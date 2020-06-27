@@ -1,22 +1,28 @@
-def QuestionsMarks(strArr):
-    a = 0
-    b =0
-    for i in range(len(strArr)-1):
-        for j in range(i,len(strArr)):
-            if strArr[i].isnumeric() and strArr[j].isnumeric():
-                x = int(strArr[i])
-                y = int(strArr[j])
-                if x+y ==10 :
-                    
-                    a,b = i,j
+def comRes(x):
+    i=0
+    n=0
+    while(len(x)>0):
 
-    target = strArr[a+1:b]
-    c = target.count("?")
-    print(c)
-    if c==3:
-        return "true"
+        if(i >= len(x)-1):
+            break
+
+
+        if(x[i] != x[i+1]):
+            temp = x[i]+ x[i+1]
+            x = x.replace(temp, '', 1)
+            i=0
+            n+=1
+        else:
+            i+=1
+            
+    if(n ==0):
+        return "NET"
+    if(n%2!=0):
+        return "DA"
     else:
-        return "false"
+        return "NET"
 
-# keep this function call here 
-print(QuestionsMarks("9???1???9??1???9"))
+t = int(input())
+for i in range(t):
+    s = input()
+    print(comRes(s))

@@ -1,10 +1,8 @@
-def question(strArr):
-    target = strArr.find("???")
-    if target>-1:
-        print("ase")
-a
+# animals list
+animals = ['cat', 'dog', 'dog', 'guinea pig', 'dog']
 
+# 'dog' is removed
+animals.remove('dog')
 
-
-
-print(question("5as???5"))
+# Updated animals list
+print('Updated animals list: ', animals)
