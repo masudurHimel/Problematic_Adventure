@@ -1,13 +1,11 @@
-
 # list for storing input data
-
 data = []
 
 while True:
     name = input("Name: ")
     medals = input("Medals: ")
 
-    data.append((name,medals))
+    data.append((name, medals))
 
     input_continue = input("Continue? [y/n] ")
 
@@ -15,7 +13,7 @@ while True:
         break
 
 # sample separator
-print("-------------")
+print("-----------------------")
 
 for inputs in data:
     print(f"{inputs[0]}\t\t{inputs[1]}")
