@@ -1,3 +1,5 @@
+import csv
+
 data = {}
 country = None
 
@@ -53,6 +55,28 @@ def generate_report(data_dict):
     print("And the winner is ")
     print(f"{stat_sort[0]} with {stat_dict[stat_sort[0]][1]} average medals")
     print("-----------------------------\n")
+    return stat_dict
+
+
+def export_csv(data_dict):
+    # name of csv file
+    filename = "country_average.csv"
+    fields = ["country", "average_medals"]
+    rows = []
+    stat_dict = generate_report(data)
+
+    # writing to csv file
+    with open(filename, 'w') as csvfile:
+        # creating a csv writer object
+        csvwriter = csv.writer(csvfile)
+
+        # writing the fields
+        csvwriter.writerow(fields)
+
+        # writing the data rows
+        for key in stat_dict:
+            row = [key, stat_dict[key][1]]
+            rows.append(row)
 
 
 while True:
@@ -69,6 +93,7 @@ while True:
     option = input("Enter Your Choice [1/2/3/4/Q]: ")
 
     if option in ["Q", "q"]:
+        print("Quit")
         break
 
     if option == "1":
@@ -80,6 +105,10 @@ while True:
         continue
 
     elif option == "3":
-        generate_report(data)
+        _ = generate_report(data)
+        continue
 
-print(data)
+    elif option == "4":
+        export_csv(data)
+
+
