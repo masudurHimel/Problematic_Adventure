@@ -12,7 +12,7 @@ while True:
     else:
         if not medals or not name:
             print("Blank Entry")
-        if not 0 <= int(medals) <= 35:
+        elif not 0 <= int(medals) <= 35:
             print("Incorrect Medal Entry")
 
     while True:
