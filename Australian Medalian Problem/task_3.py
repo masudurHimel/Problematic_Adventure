@@ -58,25 +58,58 @@ def generate_report(data_dict):
     return stat_dict
 
 
+def generate_report_result_only(data_dict):
+    stat_dict = {}
+    for key in data_dict:
+        temp_medals = 0
+        for val in data_dict[key]:
+            temp_medals = temp_medals + int(val[1])
+
+        data_len = len(data_dict[key])
+        average_medals = "{:.2f}".format(temp_medals / data_len)
+        stat_dict[key] = (len(data_dict[key]), average_medals)
+
+    stat_sort = sorted(stat_dict.keys(), key=lambda x: stat_dict[x][1], reverse=True)
+    return stat_dict
+
+
 def export_csv(data_dict):
     # name of csv file
     filename = "country_average.csv"
-    fields = ["country", "average_medals"]
+    filename_2 = "medalists_details.csv"
+    fields = ["Country", "Average_medals_overall"]
+    fields_2 = ["Medalist", "Country", "Number_of_Medals"]
     rows = []
-    stat_dict = generate_report(data)
+    rows_2 = []
+    stat_dict = generate_report_result_only(data)
 
     # writing to csv file
     with open(filename, 'w') as csvfile:
         # creating a csv writer object
-        csvwriter = csv.writer(csvfile)
+        writer = csv.DictWriter(csvfile, fieldnames=fields)
 
         # writing the fields
-        csvwriter.writerow(fields)
+        writer.writeheader()
 
         # writing the data rows
         for key in stat_dict:
-            row = [key, stat_dict[key][1]]
+            row = {'Country': key, 'Average_medals_overall': stat_dict[key][1]}
             rows.append(row)
+        writer.writerows(rows)
+
+        # writing to csv file
+    with open(filename_2, 'w') as csvfile:
+        # creating a csv writer object
+        writer_2 = csv.DictWriter(csvfile, fieldnames=fields_2)
+
+        # writing the fields
+        writer_2.writeheader()
+        # writing the data rows
+        for key in data_dict:
+            for values in data_dict[key]:
+                temp_row = {"Medalist": values[0], "Country": key, "Number_of_Medals": values[1]}
+            rows_2.append(temp_row)
+        writer_2.writerows(rows_2)
 
 
 while True:
@@ -110,5 +143,3 @@ while True:
 
     elif option == "4":
         export_csv(data)
-
-
