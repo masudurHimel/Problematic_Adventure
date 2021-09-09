@@ -33,29 +33,11 @@ def generate_report(data_dict):
 
     print("Results\n")
     print("-----------------------------")
-    print("Olympic Medalists")
-
-    for key in data_dict:
-        temp_medals = 0
-        for val in data_dict[key]:
-            print(f"{val[0]}\t{key}\t{val[1]}")
-            temp_medals = temp_medals + int(val[1])
-
-        data_len = len(data_dict[key])
-        average_medals = "{:.2f}".format(temp_medals / data_len)
-        stat_dict[key] = (len(data_dict[key]), average_medals)
-
+    print("Top 5 Olympic Medalists per Country")
     print("-----------------------------")
-    print("Country Statistics\n")
-    for key in stat_dict:
-        print(f"{key}\tTotal medalists = {stat_dict[key][0]}\tAverage = {stat_dict[key][1]}")
-
-    print("-----------------------------")
-    stat_sort = sorted(stat_dict.keys(), key=lambda x: stat_dict[x][1], reverse=True)
-    print("And the winner is ")
-    print(f"{stat_sort[0]} with {stat_dict[stat_sort[0]][1]} average medals")
-    print("-----------------------------\n")
-    return stat_dict
+    print(f"Country = {country}")
+    print(data_dict)
+    print(generate_report_result_only(data_dict))
 
 
 def generate_report_result_only(data_dict):
@@ -172,7 +154,7 @@ while True:
         continue
 
     elif option == "3":
-        _ = generate_report(data)
+        generate_report(data)
         continue
 
     elif option == "4":
