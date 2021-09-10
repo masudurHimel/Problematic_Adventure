@@ -2,6 +2,7 @@ import csv
 
 data = {}
 country = None
+olympian_name = []
 
 
 # main menu
@@ -13,57 +14,71 @@ def take_country(data_dict):
     return country_input
 
 
-def take_olympian_input(data_dict, country):
-    name = input("Name: ")
-    medals = input("Medals: ")
+def top_five_generator():
+    top_five_dict = {}
 
-    # validation check
-    if name and medals and 0 <= int(medals) <= 35:
-        data_dict[country].append((name, medals))
-    else:
-        if not medals or not name:
-            print("Blank Entry")
-        elif not 0 <= int(medals) <= 35:
-            print("Incorrect Medal Entry")
+    for key in data:
+        temp_list = data[key]
+        temp_sorted_list = sorted(temp_list, key = lambda x: x[1], reverse = True)
+        if len(temp_sorted_list) >=5:
+            top_five_dict[key] = temp_sorted_list[0:5]
+        else:
+            top_five_dict[key] = temp_sorted_list[0:len(temp_sorted_list)]
+        
+    return top_five_dict
 
 
 def generate_report(data_dict):
-    stat_dict = {}
-    top_medal = []
-
+    top_average = {}
     print("Results\n")
     print("-----------------------------")
     print("Top 5 Olympic Medalists per Country")
     print("-----------------------------")
-    print(f"Country = {country}")
-    print(data_dict)
-    print(generate_report_result_only(data_dict))
+    top_five = top_five_generator()
+
+    for key in top_five:
+        print(f"Country = {key}")
+        temp_average = 0
+        for value in top_five[key]:
+            print(f"{value[0]} {value[1]}")
+            temp_average = temp_average + int(value[1])
+
+        temp_average = "{:.2f}".format(temp_average / 5)
+        top_average[key] = temp_average
+
+        if len(top_five[key]) < 5: 
+            print("Note less than 5 athletes listed")
+
+        print("-----------------------------")
+    
+    print("Country Results")
+    for key in top_average:
+        print(f"{key} {top_average[key]}")
+    print("-----------------------------")
 
 
 def generate_report_result_only(data_dict):
-    stat_dict = {}
-    for key in data_dict:
-        temp_medals = 0
-        for val in data_dict[key]:
-            temp_medals = temp_medals + int(val[1])
+    top_average = {}
+    top_five = top_five_generator()
 
-        data_len = len(data_dict[key])
-        average_medals = "{:.2f}".format(temp_medals / data_len)
-        stat_dict[key] = (len(data_dict[key]), average_medals)
+    for key in top_five:
+        temp_average = 0
+        for value in top_five[key]:
+            temp_average = temp_average + int(value[1])
 
-    stat_sort = sorted(stat_dict.keys(), key=lambda x: stat_dict[x][1], reverse=True)
-    return stat_dict
-
+        temp_average = "{:.2f}".format(temp_average / 5)
+        top_average[key] = temp_average
+    return top_five, top_average
 
 def export_csv(data_dict):
     # name of csv file
-    filename = "country_average.csv"
-    filename_2 = "medalists_details.csv"
-    fields = ["Country", "Average_medals_overall"]
-    fields_2 = ["Medalist", "Country", "Number_of_Medals"]
+    filename = "countryTask4.csv"
+    filename_2 = "olympianTask4.csv"
+    fields = ["Country", "Average"]
+    fields_2 = ["Olympians", "Country", "Medal tally"]
     rows = []
     rows_2 = []
-    stat_dict = generate_report_result_only(data)
+    top_five, top_average = generate_report_result_only(data)
 
     # writing to csv file
     with open(filename, 'w') as csvfile:
@@ -74,8 +89,8 @@ def export_csv(data_dict):
         writer.writeheader()
 
         # writing the data rows
-        for key in stat_dict:
-            row = {'Country': key, 'Average_medals_overall': stat_dict[key][1]}
+        for key in top_average:
+            row = {'Country': key, 'Average': top_average[key]}
             rows.append(row)
         writer.writerows(rows)
 
@@ -87,18 +102,16 @@ def export_csv(data_dict):
         # writing the fields
         writer_2.writeheader()
         # writing the data rows
-        for key in data_dict:
-            for values in data_dict[key]:
-                temp_row = {"Medalist": values[0], "Country": key, "Number_of_Medals": values[1]}
-            rows_2.append(temp_row)
+        for key in top_five:
+            for values in top_five[key]:
+                temp_row = {"Olympians": values[0], "Country": key, "Medal tally": values[1]}
+                rows_2.append(temp_row)
         writer_2.writerows(rows_2)
 
 
 def import_data_file(line_flag_number=0):
     filename = input("Filename: ")
     file_ins = open(filename, "r+")
-
-    olympian_name = []
 
     while True:
         line_flag_number = line_flag_number + 1
@@ -124,7 +137,6 @@ def import_data_file(line_flag_number=0):
             data[country].append((olympian, medals))
             olympian_name.append(olympian)
 
-    print(data)
 
 
 while True:

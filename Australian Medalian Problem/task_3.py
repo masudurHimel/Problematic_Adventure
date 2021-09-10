@@ -108,7 +108,7 @@ def export_csv(data_dict):
         for key in data_dict:
             for values in data_dict[key]:
                 temp_row = {"Medalist": values[0], "Country": key, "Number_of_Medals": values[1]}
-            rows_2.append(temp_row)
+                rows_2.append(temp_row)
         writer_2.writerows(rows_2)
 
 
