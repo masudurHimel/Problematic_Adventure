@@ -17,4 +17,3 @@ class Solution:
 
 x = Solution()
 print(x.tribonacci(30))
-print('{:.10f}'.format(b - e))
