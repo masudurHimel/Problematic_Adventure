@@ -265,3 +265,4 @@ app_logs/*
 # End of https://www.gitignore.io/api/code
 
 qr_code_images/*.png
+.DS_Store
