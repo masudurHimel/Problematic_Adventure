@@ -1,0 +1,13 @@
+*** DO Not use "+" for string concatenation [1]
+    Note that strings are immutable. Hence, every time you add an element to a string with the "+" operator,
+    Python has to create a new string with a new memory allocation. With longer strings, the memory inefficiency of the
+    code will become more pronounced.
+
+*** Using itertools for efficient looping [1]
+    Itertools module enables memory-efficient looping by getting rid of unnecessary loops. Interestingly, the itertools
+    module is called a gem as it enables composing elegant solutions for a myriad of problems.
+
+
+
+References
+1. https://t.ly/XDhg

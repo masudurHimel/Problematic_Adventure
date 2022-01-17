@@ -1,0 +1,16 @@
+ -Python initializes a "discard list" for unused objects.
+ -An algorithm is run to detect reference cycles.
+ -If an object is missing outside references, it is inserted into the discard list.
+ -Frees up memory allocation for the objects in the discard list.
+
+**
+Python memory manager does not necessarily release the memory back to your operating system. As per the document "under
+certain circumstances, the Python memory manager may not trigger appropriate actions, like garbage collection, memory
+compaction or other preventive measures."
+As a result, one may have to explicitly free up memory in Python. One way to do this is to force the Python garbage
+collector to release unused memory by making use of the gc module. One simply needs to run gc.collect() to do so.
+This can be marked as occasional pythonic error, especially when dealing with large datasets, several Python libraries
+etc. e.g Pandas, a growing dictionary without a fixed size limit.
+
+Solutions: APM(Application Performance Monitoring), tracemalloc, memory-profiler
+**

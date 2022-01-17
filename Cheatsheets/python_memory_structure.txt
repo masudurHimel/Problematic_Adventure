@@ -1,0 +1,16 @@
+All objects and instance variables are stored in the heap memory. When a variable is created in Python, it is stored in a private heap which will then allow for allocation and deallocation.
+
+The heap memory enables these variables to be accessed globally by all your program’s methods. After the variable is returned, the Python garbage collector gets to work.
+
+Python memory structure has three different levels:
+	- Arenas - books on the desk
+				(e.g. 64 books)
+				(Fixed size - allocated in the heap)
+				(responsible for allocating memory)
+	- Pools  - Each Book within one arena
+				(Fixed size - 4 Kb)
+				(state - empty-used-full)
+	- Blocks - Pages within each book
+				(not fixed size- multiple of 8)
+				(3 states- untouched-free-allocated)
+These structures are specifically for smaller python objects, large objects are directed to the C allocator within python
