@@ -14,3 +14,6 @@ Python memory structure has three different levels:
 				(not fixed size- multiple of 8)
 				(3 states- untouched-free-allocated)
 These structures are specifically for smaller python objects, large objects are directed to the C allocator within python
+
+
+Source: https://t.ly/XDhg
