@@ -1,0 +1,24 @@
+**facts
+	- Most services need to persist data in some kind of database
+	- Services must be loosely coupled so that they can be developed, deployed and scaled independently
+	- Keep each microservice’s persistent data private to that service and accessible only via its API
+	- To keep database private per service, for relational database the options are:
+		- Private-tables-per-service : each service owns a set of tables that must only be accessed by that service
+		- Schema-per-service : each service has a database schema that’s private to that service
+		- Database-server-per-service : each service has it’s own database server.
+	- It is a good idea to create barriers that enforce this modularity. e.g. different db users id per service etc.
+	- For span transaction throughout services: check Saga pattern
+	- For implementing queries that span services: check API Composition, CQRS
+
+**Pros
+	- ensuring independency
+	- freedom of choosing appropriate database for each service
+
+**Cons
+	- joining data in multiple database in challenging
+	- Complexity of managing multiple SQL and NoSQL databases
+
+
+References:
+1. https://microservices.io/patterns/data/database-per-service.html
+2. https://chrisrichardson.net/post/microservices/patterns/data/2019/07/15/ftgo-database-per-service.html
