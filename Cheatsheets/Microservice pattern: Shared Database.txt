@@ -1,0 +1,15 @@
+** It answers the question - "What’s the database architecture in a microservices' application?"
+** Use a (single) database that is shared by multiple services. Each service freely accesses data owned by other
+    services using local ACID transactions.
+
+Pros:
+    - A single database is simpler to operate.
+
+Cons:
+    - Development time coupling. e.g. dependency of development.
+    - Runtime coupling - because all services access the same database they can potentially interfere with one another.
+    - Single database might not satisfy the data storage and access requirements of all services.
+
+
+References:
+1. https://microservices.io/patterns/data/shared-database.html
