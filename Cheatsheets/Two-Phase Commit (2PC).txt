@@ -1,0 +1,20 @@
+A two-phase commit is a standardized protocol that ensures that a database commit is implementing in the situation
+where a commit operation must be broken into two separate parts.
+
+In database management, saving data changes is known as a commit and undoing changes is known as a rollback. Both can
+be achieved easily using transaction logging when a single server is involved, but when the data is spread across
+geographically-diverse servers in distributed computing the process can become more tricky.
+
+So here the 2PC comes to strike, the two-phase commit is implemented as follows:
+
+- Phase 1 - Each server that needs to commit data writes its data records to the log. If a server is unsuccessful,
+            it responds with a failure message. If successful, the server replies with an OK message.
+
+- Phase 2 - This phase begins after all participants respond OK. Then, the coordinator sends a signal to each server
+            with commit instructions. After committing, each writes the commit as part of its log record for reference
+            and sends the coordinator a message that its commit has been successfully implemented. If a server fails,
+            the coordinator sends instructions to all servers to roll back the transaction. After the servers roll
+            back, each sends feedback that this has been completed.
+
+
+Reference: https://www.techopedia.com/definition/1252/two-phase-commit
