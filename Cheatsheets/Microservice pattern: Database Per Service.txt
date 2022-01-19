@@ -5,7 +5,7 @@
 	- To keep database private per service, for relational database the options are:
 		- Private-tables-per-service : each service owns a set of tables that must only be accessed by that service
 		- Schema-per-service : each service has a database schema that’s private to that service
-		- Database-server-per-service : each service has it’s own database server.
+		- Database-server-per-service : each service has its own database server.
 	- It is a good idea to create barriers that enforce this modularity. e.g. different db users id per service etc.
 	- For span transaction throughout services: check Saga pattern
 	- For implementing queries that span services: check API Composition, CQRS
