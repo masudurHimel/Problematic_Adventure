@@ -1,1 +1,5 @@
-** ACID (atomicity, consistency, isolation, durability)
+** ACID
+   - Atomicity
+   - Consistency
+   - Isolation
+   - Durability
