@@ -1,5 +1,12 @@
 ** ACID
-   - Atomicity
-   - Consistency
-   - Isolation
-   - Durability
+   - Atomicity: Entire transaction takes place at once or does not happen at all, no midway, no partial.
+                It follows, 'All or nothing rule'.
+
+   - Consistency:  DB should be maintained so that the database is consistent before and after the transaction.
+                   It refers to the correctness of a database.
+
+   - Isolation: Multiple transactions can occur concurrently without leading to the inconsistency of database state.
+                Transactions occur independently without interference.
+
+   - Durability: This property ensures that once the transaction has completed execution, the updates and modifications
+                 to the database are stored in and written to disk, and they persist even if a system failure occurs.
