@@ -1,0 +1,17 @@
+** Founded by Matthew Price, Lee Holloway and Michelle Zatlyn in 2009
+** Cloudflare is a US company that provides services like a DNS, a content delivery network (CDN) and other services
+    to make websites faster and more secure.
+** Processes 1 billion IP-Addresses each day
+** Cloudflare DNS offers faster response time with integrated security measures like DDoS-blocker and DNSSEC
+** 100% uptime
+** As Cloudflare is the largest, they also scan the most IP-addresses worldwide and therefore have the quickest IP
+    addresses with bad intentions visible which can then be blocked immediately.
+** DDoS-attacks can’t be avoided, however they can be made harmless by blocking IP-addresses/ranges or even complete
+    regions.
+** Integrated WAF-Dashboard (Web Application Firewall)
+** Biggest Service: CDN (Content Delivery Network) | It's CDN have builtin caching module | Complete user control on
+    caching.
+** Fastest response in 72% location, averaging 4.98 ms.
+** Examples: Medium, gitlab, udemy, fiverr, yelp
+
+** Alternatives: Akamai, Imperva Incapsula, Amazon CloudFront

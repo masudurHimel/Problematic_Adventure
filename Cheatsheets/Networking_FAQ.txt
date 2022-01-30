@@ -1,0 +1,10 @@
+DNS: Domain Name System is the system and network protocol that is used on the internet to translate the names of
+    computers to numeric addresses and controversy. Internet users don’t have to remember their IP-addresses when they
+    want to visit a website, but just fill in a name.
+
+WAF: Web Application Firewall is a solution for every organization that wants to protect their website or other
+    application against cyberattacks without making modifications to the existing infrastructure.
+
+SSL: Security Socket Layer is the standard protocol that is used for establishing a secured connection. Every website
+    should have an SSL-certificate.
+
