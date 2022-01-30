@@ -1,6 +1,9 @@
 ** Founded by Matthew Price, Lee Holloway and Michelle Zatlyn in 2009
 ** Cloudflare is a US company that provides services like a DNS, a content delivery network (CDN) and other services
     to make websites faster and more secure.
+** They have servers all over the world, so when web users tried to fetch something, user requests don't need to .
+    contact the actual server, instead it gets its response directly from cloudflare's server which results into a
+    very fast communication.
 ** Processes 1 billion IP-Addresses each day
 ** Cloudflare DNS offers faster response time with integrated security measures like DDoS-blocker and DNSSEC
 ** 100% uptime
