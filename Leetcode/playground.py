@@ -1,21 +1,33 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
 class Solution:
-    def maxArea(self, height) -> int:
-        start = 0
-        end = len(height) - 1
-        max_area = 0
+    def deleteDuplicates(self, head):
+        if not head:
+            return None
+        res = [head.val]
+        head = head.next
+        while head:
+            if res[-1] != head.val:
+                res.append(head.val)
+            head = head.next
 
-        while start <= end:
-            if height[start] <= height[end]:
-                _ = (end - start) * height[start]
-                start += 1
+        flag = 0
+        for i in res:
+            if flag == 0:
+                res_head = ListNode(val=i)
+                tmp_head = res_head
+                flag = 1
             else:
-                _ = (end - start) * height[end]
-                end -= 1
-
-            if _ > max_area:
-                max_area = _
-        return max_area
+                _ = ListNode(val=i)
+                tmp_head.next = _
+                tmp_head = _
+        return res_head
 
 
 s = Solution()
-print(s.maxArea([1, 1]))
+head = ListNode(val=1, next=ListNode(val=1, next=(ListNode(val=2))))
+print(s.deleteDuplicates(head))
