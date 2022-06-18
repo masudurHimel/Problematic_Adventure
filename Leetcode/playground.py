@@ -1,30 +1,6 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from datetime import datetime
 
-
-def traverseList(head):
-    while head:
-        print(head.val, end=" ")
-        head = head.next
-    print()
-
-
-class Solution:
-    def smallerNumbersThanCurrent(self, nums):
-        x = sorted(nums.copy(), reverse=True)
-        for i in enumerate(nums):
-            _ = x.count(i[0])
-            nums[i[0]] = len(nums) - x.index(i[1]) -1
-            if _ > 1:
-                nums[i[0]] -= _ -1
-        return nums
-
-
-
-s = Solution()
-list1 = ListNode(val=1, next=ListNode(val=2, next=ListNode(val=4)))
-list2 = ListNode(val=1, next=ListNode(val=3, next=ListNode(val=4)))
-print(s.smallerNumbersThanCurrent([8,1,2,2,3]))
+db_time = "2022-06-10T23:57:53.710004+06:00"
+formatted_db_time = datetime.strptime(db_time[:-6], "%Y-%m-%dT%H:%M:%S.%f")
+current_time = datetime.now()
+print("Difference in time : ", current_time - formatted_db_time)
