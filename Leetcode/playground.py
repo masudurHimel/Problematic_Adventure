@@ -1,17 +1,6 @@
-import time
+from datetime import datetime
 
-
-def generate(numRows):
-    res = [[1], [1, 1]]
-    for i in range(2, numRows):
-        res.append([])
-        for j in range(i + 1):
-            if j == 0 or j == i:
-                res[i].append(1)
-            else:
-                res[i].append(sum(res[i - 1][j - 1:j + 1]))
-
-    return res
-
-
-
+db_time = "2022-06-10T23:57:53.710004+06:00"
+formatted_db_time = datetime.strptime(db_time[:-6], "%Y-%m-%dT%H:%M:%S.%f")
+current_time = datetime.now()
+print("Difference in time : ", current_time - formatted_db_time)
