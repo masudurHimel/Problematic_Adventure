@@ -1,7 +1,8 @@
 import time
+import cython
 
 
-def generate(numRows):
+def generate(numRows: cython.int):
     res = [[1], [1, 1]]
     for i in range(2, numRows):
         res.append([])
@@ -14,4 +15,6 @@ def generate(numRows):
     return res
 
 
-
+start_time = time.time()
+_ = generate("5000")
+print(time.time() - start_time)

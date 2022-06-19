@@ -52,6 +52,12 @@ g.addEdge(1, 2)
 g.addEdge(2, 0)
 g.addEdge(2, 3)
 g.addEdge(3, 3)
+g.addEdge(3, 10)
+
+for i in range(10, 1000000 + 1):
+    if i == 1000000:
+        break
+    g.addEdge(i, i + 1)
 
 print("Following is Breadth First Traversal"
       " (starting from vertex 2)")
