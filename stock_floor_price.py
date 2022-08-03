@@ -17,7 +17,7 @@ def get_stock_floor_price(stock_name=None, count=5):
 
 
 if __name__ == "__main__":
-    floor_price = get_stock_floor_price(stock_name=sys.argv)
+    floor_price = get_stock_floor_price(stock_name=sys.argv[1])
     if floor_price:
         print(floor_price)
     else:
