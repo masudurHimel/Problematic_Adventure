@@ -12,6 +12,7 @@ from collections import defaultdict
 
 
 class Solution:
+    @staticmethod
     def maxSatisfaction(self, sa):
         sa = sorted(sa)
         n = len(sa)
