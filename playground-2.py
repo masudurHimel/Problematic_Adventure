@@ -1,29 +1,34 @@
-class Node:
-    def __init__(self, val, level):
+# Definition for a binary tree node.
+from collections import Counter
+from copy import deepcopy
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.forward = [None] * (level + 1)
+        self.left = left
+        self.right = right
 
 
-class Skiplist:
+class Solution:
+    def dfs(self, node):
+        if not node:
+            return None
 
-    def __init__(self, max_level, partition):
-        self.max_level = max_level
-        self.partition = partition
-        self.level = 0
-        self.header = Node(-1, max_level)
+        print(node.val)
+        l = self.dfs(node.left)
+        r = self.dfs(node.right)
 
-    def search(self, target: int) -> bool:
-        pass
+        temp = node.left
+        node.left = node.right
+        node.right = temp
+        return node
 
-    def add(self, num: int) -> None:
-        update = [None] * (self.max_level + 1)
-        current = self.header
+    def invertTree(self, root):
+        self.dfs(root)
 
-    def erase(self, num: int) -> bool:
-        pass
 
-# Your Skiplist object will be instantiated and called as such:
-# obj = Skiplist()
-# param_1 = obj.search(target)
-# obj.add(num)
-# param_3 = obj.erase(num)
+s = Solution()
+x = TreeNode(val=1, left=TreeNode(val=0, left=TreeNode(val=0), right=TreeNode(val=1)),
+             right=TreeNode(val=1, left=TreeNode(val=0), right=TreeNode(val=1)))
+print(s.invertTree(x))
