@@ -1,34 +1,21 @@
 # Definition for a binary tree node.
-from collections import Counter
+import math
+from collections import Counter, deque
 from copy import deepcopy
 
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
 class Solution:
-    def dfs(self, node):
-        if not node:
-            return None
+    def maxSubArray(self, nums):
+        # combined = [nums[-1]] * len(nums)
+        greedy = [nums[-1]] * len(nums)
 
-        print(node.val)
-        l = self.dfs(node.left)
-        r = self.dfs(node.right)
+        for i in range(len(nums) - 2, -1, -1):
+            # combined[i] = combined[i+1]+nums[i]
+            greedy[i] = max(nums[i], greedy[i+1]+nums[i])
 
-        temp = node.left
-        node.left = node.right
-        node.right = temp
-        return node
-
-    def invertTree(self, root):
-        self.dfs(root)
+        return max(greedy)
 
 
 s = Solution()
-x = TreeNode(val=1, left=TreeNode(val=0, left=TreeNode(val=0), right=TreeNode(val=1)),
-             right=TreeNode(val=1, left=TreeNode(val=0), right=TreeNode(val=1)))
-print(s.invertTree(x))
+x = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+print(s.maxSubArray(x))
