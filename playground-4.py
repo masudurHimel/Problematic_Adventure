@@ -12,31 +12,44 @@ from collections import defaultdict
 
 
 class Solution:
-    def maxSatisfaction(self, sa):
-        sa = sorted(sa)
-        n = len(sa)
+    def checkStrings(self, s1: str, s2: str) -> bool:
+        even_collection = defaultdict(list)
+        odd_collection = defaultdict(list)
 
-        lastSum = 0
-        curSum = 0
-        i = n - 1
-        while i >= 0 and sa[i] > 0:
-            curSum += sa[i]
-            lastSum += curSum
-            i -= 1
-        if i == -1 or lastSum == 0:
-            return lastSum
+        s1 = list(s1)
+        s2 = list(s2)
 
-        best = lastSum
+        for i in range(len(s1)):
+            if i % 2 == 0:
+                even_collection[s1[i]].append(i)
+            else:
+                odd_collection[s1[i]].append(i)
 
-        while i >= 0:
-            curSum += sa[i]
-            lastSum += curSum
-            best = max(best, lastSum)
-            i -= 1
-        return best
+        # print(even_collection, odd_collection)
+
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                target = s2[i]
+                if i % 2 == 0:
+                    if even_collection.get(target):
+                        temp = even_collection[target].pop(0)
+                        s1[i], s1[temp] = s1[temp], s1[i]
+                    else:
+                        return False
+                else:
+                    if odd_collection.get(target):
+                        temp = odd_collection[target].pop(0)
+                        s1[i], s1[temp] = s1[temp], s1[i]
+                    else:
+                        return False
+
+        # if s1[-2:] == s2[-2:]:
+        #     return True
+        return True
 
 
 s = Solution()
-x = [-1, -8, 0, 5, -9]
+x = "ublnlasppynwgx"
+y = "ganplbuylnswpx"
 
-print(s.maxSatisfaction(x))
+print(s.checkStrings(x,y))
